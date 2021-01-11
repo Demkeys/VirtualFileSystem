@@ -4,3 +4,4 @@
 
 ### TODO:
 * Add more comments to FileManager and FileSystem. FileSystem's DecompressFileSystemData method might need more commenting.
+* Create Ex03 example scene to demonstrate a very basic way data integrity check.
