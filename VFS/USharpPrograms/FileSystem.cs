@@ -20,10 +20,19 @@ namespace VirtualFileSystem
 {
 public class FileSystem : UdonSharpBehaviour
 {
+    /* Max no. of bytes the FileSystem can store. Be careful with how big you set this. 4kb is 
+    fine. Maybe 8kb as well. Any higher than that could cause lag spikes when importing and 
+    exporting FileSystemData. */
     const int FileSystemDataSize = 4096;
 
-    byte[] FileStartSig = {0x78,0x74,0x65,0x6a,0x63,0x76}; // xtejcv | Maybe change it to this -> 0xe6 0xf7 0xfb 0xb2 0xe2 0x83 | 
-    byte[] FileEndSig = {0x76,0x63,0x6a,0x65,0x74,0x78}; // vcjetx | Maybe change it to this -> 0x83 0xe2 0xb2 0xfb 0xf7 0xe6 |
+    /* File signatures help the file system recognize a file. Every file will have a FileStartSig
+    and FileEndSig. If you wish to avoid FileSystemData of other worlds being imported into your
+    world's FileSystem, you can change these bytes to something of your choice. But another 
+    alternative would be to setup your world's Save and Load logic so it can recognize FileData 
+    that belongs to your world instead. For example, including magic numbers in the FileData. */
+    byte[] FileStartSig = {0x78,0x74,0x65,0x6a,0x63,0x76}; // xtejcv 
+    byte[] FileEndSig = {0x76,0x63,0x6a,0x65,0x74,0x78}; // vcjetx 
+    
     byte[] FileSystemData;
     string FileSystemDataString;
     
@@ -63,17 +72,11 @@ public class FileSystem : UdonSharpBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Set size for FileSystemData. This is the total number of bytes this FileSystemData
-        // will be able to hold. Don't go over 8192 because that can cause performance spikes 
-        // when outputting packed FileSystemData string. 8192 bytes is 8 KB. 
+        // Set size for FileSystemData. 
         FileSystemData = new byte[FileSystemDataSize];
         
         FileStartAddresses = new int[1024];
         FileEndAddresses = new int[1024];
-
-        // Debug.Log(ByteArrayToString(FileStartSig));
-        
-        // string s = "abc";
     }
 
     // Update is called once per frame
@@ -307,60 +310,6 @@ public class FileSystem : UdonSharpBehaviour
         // Read operation succeeded, return 0.
         return 0;
     }
-
-    // Deletes file at fileIndex. 
-    // Returns 0 if file found.
-    // Returns -1 if file not found.
-    // public int DeleteFileFromFileSystem2(int fileIndex)
-    // {
-        
-    //     // If fileIndex is negative or greater than length of FileStartAddresses array,
-    //     // fileIndex doesn't exist, so return -1.
-    //     if(fileIndex < 0 || fileIndex > (FileStartAddresses.Length-1)) return -1;
-    //     // Otherwise, continue...
-
-
-    //     Debug.Log("Point -1");
-    //     // NOTE: This works by locating the start and end addresses of the file to be deleted,
-    //     // and pushing all the remaining files back. This basically overwrites the file to be
-    //     // deleted, thereby deleting it. After that the 
-        
-    //     int totalFileSize = (FileEndAddresses[fileIndex]-FileStartAddresses[fileIndex])+1;
-
-    //     // Total size of all files succeeding the file to be deleted.
-    //     int remainingDataSize = (FileEndAddresses[FileCount-1]-FileEndAddresses[fileIndex]);
-
-    //     Debug.Log("Point 0");
-
-    //     // Shift remaining data back, effectively overwritting/deleting a file. This isn't
-    //     // moving data. It's copying data. So remaining unused space needs to be zero'd out
-    //     // to avoid garbage.
-    //     for(int i = 0; i < remainingDataSize; i++)
-    //     {
-    //         Debug.Log(FileStartAddresses[fileIndex]+remainingDataSize+i);
-    //         FileSystemData[FileStartAddresses[fileIndex]+i] = 
-    //             FileSystemData[FileStartAddresses[fileIndex]+remainingDataSize+i];
-    //     }
-    //     // At this point the remaining data has been shifted back, but unused space hasn't
-    //     // been zero'd out.
-    //     Debug.Log("Point 1");
-
-    //     // Calculate unused space.
-    //     int unusedSpace = FileSystemData.Length-
-    //         (FileStartAddresses[fileIndex]+remainingDataSize);
-
-    //     Debug.Log("Point 2");
-    //     // Zero out the remaining unused space.
-    //     for(int i = 0; i < unusedSpace; i++)
-    //     {
-    //         FileSystemData[FileStartAddresses[fileIndex]+remainingDataSize+i] = 0;
-    //     }
-
-    //     FileCount = ScanForFiles();
-    //     WritePosition -= totalFileSize;
-
-    //     return 0;
-    // }
 
     // Deletes file at fileIndex. 
     // Returns 0 if file found.
