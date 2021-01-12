@@ -16,7 +16,7 @@ Drag the VirtualFileSystem prefab into your scene. Then hook your own Save and L
 - Select SaveNewFileButton (VirtualFileSystem>FileManagerCanvas>SaveNewFileButton). In the OnClick event in the Inspector, there will be two actions. One of them is empty. This is where you add a call to your own Save method. 
 - Select LoadFileButton (VirtualFileSystem>FileManagerCanvas>LoadFileButton). In the OnClick event in the Inspector, there will be two actions. One of them is empty. This is where you add a call to your own Load method. 
 
-It is very important to follow the action order that is provided. For the Save button it's, your Save method first, FileSystem Save method second. For the Load button it's, FileSystem Load method first, your Load method second. 
+The SaveNewFileButton and LoadFileButton OnClick events have multiple actions that are set in a specific order. It is very important to follow the action order that is provided, and not change the order. For the Save button the order is, your Save method first, FileSystem Save method second. For the Load button it's, FileSystem Load method first, your Load method second. 
 Any data you wish to write to a file must first be converted to a byte array. Any data you read from a file will a byte array. 
 When you wish to write data to a file, your Save method must write the byte array to the FileManager's fileDataBuffer variable. When the SaveNewFileButton OnClick event is triggered the FileManager will handle everything else.
 When you wish to read data from a file, first the LoadFileButton OnClick event has to be triggered. After the event has been triggered, your Load method must read the FileManager's fileDataBuffer varaible to get the data.
