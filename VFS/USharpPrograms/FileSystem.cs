@@ -65,7 +65,7 @@ public class FileSystem : UdonSharpBehaviour
     string PackedFileSystemData = ""; 
 
     string CompressedFileSystemData = "";
-    string DecompressedFileSystemData = "";
+    string DecompressedFileSystemData = ""; // Might not be in use. Confirm and delete later.
     int FileSystemDecompressReturnCode = 0; // 0=Success, -1=Error
     // **********************************************************************
     
