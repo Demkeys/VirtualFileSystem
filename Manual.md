@@ -12,7 +12,7 @@ If you have VFS already imported into a project and wish to update it to the las
 - Navigate to the Assets folder of your project and delete the VFS folder and VFS.meta file. 
 - Open project in Unity and import the latest VFS package into the project. The project should now have the latest VFS package, and all prefab instances should be updated as well.
 ----
-## Implementing VFS in your world (maybe give this section it's own page):
+## Implementing VFS in your world:
 
 Drag the VirtualFileSystem prefab into your scene. Then hook your own Save and Load methods into VFS so they will be executed along with VFS's Save and Load methods. To do that:
 - Select SaveNewFileButton (VirtualFileSystem>FileManagerCanvas>SaveNewFileButton). In the OnClick event in the Inspector, there will be two actions. One of them is empty. This is where you add a call to your own Save method. 
