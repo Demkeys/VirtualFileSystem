@@ -4,10 +4,11 @@
 ----
 ## Importing VFS into your project:
 - Make sure that you have already imported VRCSDK3 and UdonSharp. VFS requires both of those to function.
-- Import the latest VFS unity pakcage into your project. You can download the latest version of VFS from the Releases page. 
+- Import the latest VFS unity pakcage into your project. You can download the latest version of VFS from the [Releases](https://github.com/Demkeys/VirtualFileSystem/releases) page. 
 ----
 ## Updating VFS:
 If you have VFS already imported into a project and wish to update it to the lastest VFS version, follow these steps:
+- Download the latest VFS unity package from the [Releases](https://github.com/Demkeys/VirtualFileSystem/releases) page.
 - Open project. Create a new scene. Close project. This is just to avoid accidentally breaking references in the scene in the later steps.
 - Navigate to the Assets folder of your project and delete the VFS folder and VFS.meta file. 
 - Open project in Unity and import the latest VFS package into the project. The project should now have the latest VFS package, and all prefab instances should be updated as well.
