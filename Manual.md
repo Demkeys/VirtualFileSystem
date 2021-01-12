@@ -1,16 +1,18 @@
-___NOTE: This is a temporary page. The manual will eventually be moved over to Wiki.___
+# VFS Manual
+
+### _NOTE: This is a temporary page. The manual will eventually be moved over to Wiki._
 ----
-Importing VFS into your project:
-- Make sure that you have already imported VRCSDK3 and UdonSharp. 
+## Importing VFS into your project:
+- Make sure that you have already imported VRCSDK3 and UdonSharp. VFS requires both of those to function.
 - Import the latest VFS unity pakcage into your project. You can download the latest version of VFS from the Releases page. 
 ----
-Updating VFS:
+## Updating VFS:
 If you have VFS already imported into a project and wish to update it to the lastest VFS version, follow these steps:
 - Open project. Create a new scene. Close project. This is just to avoid accidentally breaking references in the scene in the later steps.
 - Navigate to the Assets folder of your project and delete the VFS folder and VFS.meta file. 
 - Open project in Unity and import the latest VFS package into the project. The project should now have the latest VFS package, and all prefab instances should be updated as well.
 ----
-Implementing VFS in your world (maybe give this section it's own page):
+## Implementing VFS in your world (maybe give this section it's own page):
 
 Drag the VirtualFileSystem prefab into your scene. Then hook your own Save and Load methods into VFS so they will be executed along with VFS's Save and Load methods. To do that:
 - Select SaveNewFileButton (VirtualFileSystem>FileManagerCanvas>SaveNewFileButton). In the OnClick event in the Inspector, there will be two actions. One of them is empty. This is where you add a call to your own Save method. 
