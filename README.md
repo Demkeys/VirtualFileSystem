@@ -1,4 +1,4 @@
-# VirtualFileSystem
+# Virtual File System
 #### A virtual file system made to work with Udon in VRChat. The file system data can be imported/exported as a string. This means you can carry the string with you to another instance, or save it somewhere offline (eg. Notepad) for later use.
 
 ![](https://github.com/Demkeys/VirtualFileSystem/blob/main/VFS_Screenshot.png)
