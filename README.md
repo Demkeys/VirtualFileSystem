@@ -7,3 +7,4 @@ _NOTE: This repo only contains the csharp code files from the VFS package. This 
 * Add more comments to FileManager and FileSystem. FileSystem's DecompressFileSystemData method might need more comments.
 * Create Ex03 example scene to demonstrate a very basic data integrity check.
 * Create Wiki containing all the VFS documentation.
+* Maybe add a file containing helper methods to convert certain data types to bytes and vice versa. That file is mainly gonna be part of the repo, not the package. People can copy the code for functions that they need.
