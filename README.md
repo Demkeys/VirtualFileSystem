@@ -3,7 +3,7 @@
 
 ![](https://github.com/Demkeys/VirtualFileSystem/blob/main/VFS_Screenshot.png)
 
-_NOTE: This repo only contains the csharp code files from the VFS package. This is meant to be used as a scripting reference. This is not the whole VFS package. There are other files from the VFS package (*.unity, *.mat, *.prefab, etc.) that are not present in this repo, but will be present in the VFS package. To download the whole VFS package visit the Releases page._
+_NOTE: This repo is only for scripting reference. It only contains the csharp code files from the VFS package. This is not the whole VFS package. The VFS package contains other files (*.unity, *.mat, *.prefab, etc.). To download the whole VFS package visit the Releases page._
 
 There will be a Wiki for the documentation but for now, the documentation can be found on the [Manual](https://github.com/Demkeys/VirtualFileSystem/blob/main/Manual.md) page.
 
