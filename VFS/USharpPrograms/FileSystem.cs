@@ -417,6 +417,13 @@ public class FileSystem : UdonSharpBehaviour
 
     // Compresses FileSystemData. First encodes FileSystemData to base64 string. Then 
     // encoded base64 string with RLE encoding to shorten it. Returns encoded string.
+    // Compressed String Format:
+    // [RLE-encoded string]@[#-separated count string]
+    // @ - separates RLE-encoded string and count string
+    // ^ - signifies that prior char has repititions
+    // # - separates multiple counts in the count string
+    // In RLE-encoded string, chars with repititions are shortened by adding a ^ after it,
+    // and the char's repitition count is recorded in the count string.
     string CompressFileSystemData()
     {
         // Base64 encoded FileSystemData
@@ -467,7 +474,11 @@ public class FileSystem : UdonSharpBehaviour
         return final_string;
     }
 
-    // 
+    // Decompresses provided string into FileSystemData and returns a return code.
+    // 0 = Success, -1 = Error
+    // See CompressFileSystemData method's comments to understand encoding format.
+    // During decompression various checks are performed to make sure the provided 
+    // string follows the Base64+RLE encoding format. This avoids runtime exceptions.
     int DecompressFileSystemData(string compString)
     {
         char[] sym = new char[]{'@','#'};
@@ -481,12 +492,15 @@ public class FileSystem : UdonSharpBehaviour
 
         string dataString = split_compString[0];
 
-        // Split count string into individual count strings using # separator
+        // This array holds char counts, but in string form. These strings get
+        // converted to ints later.
         string[] split_countString = new string[0];
+        // Split count string into individual count strings using # separator
         split_countString = split_compString[1].Split(sym[1]);
 
-        // Convert individual count strings in ints
+        // This array holds ints converted from split_countString's elements
         int[] split_countStringInt = new int[split_countString.Length];
+        // Convert individual count strings in ints
         for(int i = 0; i < split_countString.Length; i++)
         {
             int num = 0;
@@ -494,7 +508,7 @@ public class FileSystem : UdonSharpBehaviour
             split_countStringInt[i] = num;
         }
 
-        // Unpack dataString. 
+        // Unpack dataString. The result should be a base64 string.
         // Iterate over dataString's chars.
         int arrayCounter = 0;
         for(int i = 0; i < dataString.Length; i++)
@@ -503,17 +517,22 @@ public class FileSystem : UdonSharpBehaviour
             // is equal to ^, the current char has repetitions.
             if(i != dataString.Length-1 && dataString[i+1] == '^')
             {
-                // 
+                // If arrayCounter is not out of bounds of split_countStringInt...
                 if(arrayCounter < split_countStringInt.Length)
                 {
+                    // Write char multiple times in unpacked_data_string
                     for(int j = 0; j < split_countStringInt[arrayCounter]; j++)
                     {
                         unpacked_data_string += $"{dataString[i]}";
                     }
-                    i++;
+                    
+                    // Increment i so that the next iteration starts after the ^ char.
+                    i++; 
+                    
                     arrayCounter++;
                 }
             }
+            // Else, since there is no repitition, append char to string.
             else
             {
                 unpacked_data_string += $"{dataString[i]}";
@@ -554,6 +573,9 @@ public class FileSystem : UdonSharpBehaviour
         /////////////////////////////////////////////////////////////////////////////////////
 
         FileSystemData = System.Convert.FromBase64String(unpacked_data_string);
+        
+        // This should handle situations where the FileSystemData size (after decompression)
+        // is smaller than FileSystemDataSize. It will zero out all the remaining data.
         if(FileSystemData.Length < FileSystemDataSize)
         {
             for(int i = FileSystemData.Length; i < FileSystemDataSize; i++)
