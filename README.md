@@ -8,8 +8,6 @@ _NOTE: This repo is only for scripting reference. It only contains the csharp co
 There will be a Wiki for the documentation but for now, the documentation can be found on the [Manual](https://github.com/Demkeys/VirtualFileSystem/blob/main/Manual.md) page.
 
 ### TODO:
-* Add more comments to FileManager and FileSystem. FileSystem's DecompressFileSystemData method might need more comments.
-* Create Ex03 example scene to demonstrate a very basic data integrity check.
 * Create Wiki containing all the VFS documentation.
 * Maybe add a file containing helper methods to convert certain data types to bytes and vice versa. That file is mainly gonna be part of the repo, not the package. People can copy the code for functions that they need.
 * Check FileManager and FileSystem for unused variables and delete them.
