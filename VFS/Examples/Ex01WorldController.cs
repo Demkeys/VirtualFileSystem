@@ -27,6 +27,11 @@ public class Ex01WorldController : UdonSharpBehaviour
 
     public void SaveDataToFile()
     {
+        // Reset variables to default values, just in case.
+        boolVar = true;
+        intVar = -24;
+        charVar = 'a';
+
         /* Data is packed as follows:
         dataBuffer[0] = boolVar
         dataBuffer[1-4] = intVar
