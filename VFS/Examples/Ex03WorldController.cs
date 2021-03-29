@@ -5,6 +5,8 @@ using VRC.SDKBase;
 using VRC.Udon;
 using UnityEngine.UI;
 
+namespace VirtualFileSystem
+{
 public class Ex03WorldController : UdonSharpBehaviour
 {
     public UdonBehaviour FileManager;
@@ -218,4 +220,5 @@ public class Ex03WorldController : UdonSharpBehaviour
         }
         return dataArr;
     }
+}
 }

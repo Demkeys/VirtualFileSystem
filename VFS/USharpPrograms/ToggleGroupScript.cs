@@ -5,6 +5,8 @@ using VRC.SDKBase;
 using VRC.Udon;
 using UnityEngine.UI;
 
+namespace VirtualFileSystem
+{
 public class ToggleGroupScript : UdonSharpBehaviour
 {
     public Toggle[] toggles;
@@ -52,4 +54,5 @@ public class ToggleGroupScript : UdonSharpBehaviour
         toggles[0].isOn = true;
         selectedToggleIndex = 0;
     }
+}
 }

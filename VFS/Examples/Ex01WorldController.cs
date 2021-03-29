@@ -4,6 +4,8 @@ using UnityEngine;
 using VRC.SDKBase;
 using VRC.Udon;
 
+namespace VirtualFileSystem
+{
 public class Ex01WorldController : UdonSharpBehaviour
 {
     public UdonBehaviour FileManager;
@@ -102,7 +104,7 @@ public class Ex01WorldController : UdonSharpBehaviour
         return res;        
     }
 }
-
+}
 
 // int maskedNum = 0;
         // maskedNum = intVar >> 24;
