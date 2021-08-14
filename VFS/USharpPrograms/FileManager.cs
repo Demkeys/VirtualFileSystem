@@ -289,6 +289,7 @@ public class FileManager : UdonSharpBehaviour
         toggleColorBlock.normalColor = toggleVal ? ToggleOnColor : ToggleOffColor;
         toggleColorBlock.highlightedColor = toggleVal ? ToggleOnColor : ToggleOffColor;
         toggleColorBlock.pressedColor = toggleVal ? ToggleOnColor : ToggleOffColor;
+        toggleColorBlock.selectedColor = toggleVal ? ToggleOnColor : ToggleOffColor;
     }
 
     void Test()
